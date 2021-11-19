@@ -50,6 +50,7 @@ cmake_minimum_required(VERSION 3.5)
 cmake_policy(SET CMP0048 NEW)
 project(gtest VERSION ${GOOGLETEST_VERSION} LANGUAGES CXX C)
 
+
 if (POLICY CMP0063) # Visibility
   cmake_policy(SET CMP0063 NEW)
 endif (POLICY CMP0063)
@@ -139,7 +140,8 @@ if (DEFINED CMAKE_VERSION AND NOT "${CMAKE_VERSION}" VERSION_LESS "2.8.11")
     "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>")
 endif()
 target_link_libraries(gtest_main PUBLIC gtest)
-
+target_compile_definitions(gtest PUBLIC _GLIBCXX_USE_CXX11_ABI=0)
+target_compile_definitions(gtest_main PUBLIC _GLIBCXX_USE_CXX11_ABI=0)
 ########################################################################
 #
 # Install rules
